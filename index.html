@@ -124,7 +124,7 @@ opacity:0;
 <div id="form">
 <h2>Anonymous Message</h2>
 
-<textarea placeholder="Type your message..."></textarea>
+<textarea id="message" placeholder="Type your message..."></textarea>
 
 <button onclick="send()">✈ Send</button>
 </div>
@@ -143,7 +143,13 @@ opacity:0;
 </div>
 
 <script>
-function send(){
+async function send(){
+
+const message = document.querySelector("textarea").value;
+
+await supabase.from("messages").insert([
+  { message: message }
+]);
 
 // Play a short beep sound
 const audio=new(window.AudioContext||window.webkitAudioContext)();
@@ -180,6 +186,16 @@ setTimeout(()=>c.remove(),5000);
 }
 }
 </script>
+<script 
+  src="https://cdn.jsdelivr.net/npm/@supabas
+  e/supabase-js@2"></script>
+  
+  <script>
+const SUPABASE_URL = "https://mvtilsflyxnrwooqpltl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_yv7gWkSsntRL8yKRV_muEA_TnRp9imv";
 
+    const supabase = 
+      window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  </script>
 </body>
 </html>
